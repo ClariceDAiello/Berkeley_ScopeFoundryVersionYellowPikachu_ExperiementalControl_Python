@@ -1,0 +1,8 @@
+Every user should have a folder with his/her name.
+
+Inside this folder there should be:
+* userconfig.py
+* __init__.py
+* a folder called Data
+* a folder called SavedSequences
+* a folder called SavedHardwareConfigs

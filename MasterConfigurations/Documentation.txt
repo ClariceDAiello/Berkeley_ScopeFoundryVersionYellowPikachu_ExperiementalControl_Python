@@ -1,0 +1,62 @@
+Saves by default 4 channels, that can be of type
+Counter 
+Analog
+
+Other channel types (ex: Camera, Spectrometer) need to be programmed.
+
+Rename this folder to something like 
+MasterConfiguration 
+
+Make a list of variables that can be scanned;
+variables different than the ones appearing in hardware will not work
+
+
+
+By default, 2 counter and 2 analog channels
+at particular ports, here (...)
+PLUS 2 ANALOG out channels for beam scan
+
+
+
+
+
+
+
+
+for counter channels can use 
+ai/SampleClock (slow up to 1MHz if reading 2 ai channels; if reading 1 AI channel, 2MHZ)
+10MHzRefClock
+20MHzTimebase
+100MHzTimebase
+
+Right now I know its piossible to use the 20MHzTimebase
+
+100MHzTimebase is not possible with current pmts:
+
+
+PMT H7421-40 has output pulse width of 30ns (confirmed with scope), 70ns pulse pair resolution,
+so that using 100MHz gets DAC error: many clock cycles under 1 pulse
+PMT R6094 has a 10ns pulse, and could in principle be used with the 100MHzTimebase
+
+ao/SampleClock is limiting factor,
+1MHz for reading 2 AI channels, 2MHZ max for reading 1 AI
+AO clock (max 2.86MHz) cannot logically be faster than the ao/SampleClock 
+
+triggering on AI line because
+"AI trigger is sample and hold"
+"AO triggger starts to update output" 
+
+
+For the program to work, Zeiss -> USerPreferences -> MAgnification Display
+should be set to Polaroid 545. The horizontal film size of Polaroid 545 is 114.22 mm, which hasto 
+correspond to total horizontal FOV
+
+By choice, we are working at highest clock rate for AI, which will be the highest clock rate for AO
+
+If you need to acquire both InLens and SE2 (or two other detectors), need to go to Zeiss -> Image -> Dual Image
+
+Recommend that turn the sleep time on the Zeiss computer to NEVER - otherwise the connection to FoundryScope will be lost.
+
+TROUBLESHOOTING
+
+If the computer fails to recognize the DAQ, computer needs to be restarted

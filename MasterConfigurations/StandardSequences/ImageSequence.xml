@@ -1,0 +1,22 @@
+<sequence>
+
+<variables>
+
+# Floats
+$No_points_per_line$,int, 512,1,1000 #Check with ZeissREMCON max number!!!
+$No_lines$,int, 512,1,1000
+
+# Bools
+$Scan_direction_x$,bool,True,False,True
+$Scan_direction_increasing$,bool,True,False,True
+
+</variables>
+
+<instructions>
+		
+# Always need to creat a scan_shape, self.scan_shape = CreateScanShapeFunction(...)		
+self.scan_shape = CreateScanShapeSquare($No_points_per_line$, $No_lines$,  $Max_beam_scan_voltage$, $Max_beam_scan_voltage$, $Offset_x$, $Offset_y$, $Scale_x$, $Scale_y$, $Scan_direction_increasing$,$Scan_direction_x$) 
+
+</instructions>
+
+</sequence>
